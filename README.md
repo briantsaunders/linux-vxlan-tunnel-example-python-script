@@ -4,8 +4,10 @@ This script is for creating a point to point unicast VXLAN tunnel between two li
 
 ## Prerequisites
 
+```
 >= python3.6
 pipenv
+```
 
 ## Installing
 
@@ -32,11 +34,11 @@ pipenv install
 #### Create
 
 ```
-sudo python3 vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
+sudo pipenv run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
 ```
 
 #### Delete
 
 ```
-sudo python3 vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
+sudo pipenv run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
 ```
