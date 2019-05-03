@@ -72,7 +72,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Example script to build VXLAN tunnel')
     parser.add_argument('--delete', required=False, action='store_true', help='Delete VXLAN tunnel')
     parser.add_argument('--local_vtep', required=True, action='store', help='Local VTEP ip address')
-    parser.add_argument('--remote_vtep', required=True, action='store', help='Local VTEP ip address')
+    parser.add_argument('--remote_vtep', required=True, action='store', help='Remote VTEP ip address')
     parser.add_argument('--vni', required=True, action='store', type=int, help='VXLAN network identifier')
     parser.add_argument('--physical_interface', required=True, action='store',  help='Physical interface to bridge')
     args = parser.parse_args()
