@@ -48,7 +48,7 @@ cd /vagrant
 sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.5 --remote_vtep 192.168.0.2 --vni 100 --physical_interface enp0s9
 ```
 
-Validate site1server and ping site2server:
+Validate site1server can ping site2server:
 ```
 vagrant ssh site1server
 ping 172.16.0.11
