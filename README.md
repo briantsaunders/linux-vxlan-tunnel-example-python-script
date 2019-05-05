@@ -28,11 +28,11 @@ cd linux-vxlan-tunnel-example-script
 vagrant up
 ```
 
-Ansible is used to provision the vagrant boxes.  It will configure FRRouting on the routers, install pip3 on the site routers, and will pip3 install the requirements.txt the site routers.  Check out the playbook pb.conf.all.yml for more details.
+Ansible is used to provision the vagrant boxes.  It will configure FRRouting on the routers, install pip3 on the site routers, and will pip3 install the requirements.txt on the site routers.  Check out the playbook pb.conf.all.yml for more details.
 
 ### Testing in Vagrant
 
-Once the vagrant environment is up issue the following commands.
+Once the vagrant environment is up issue the following commands to configure the VXLAN tunnel and validate.
 
 Configure sie1router:
 ```
