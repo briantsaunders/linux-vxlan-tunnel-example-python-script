@@ -1,0 +1,23 @@
+#jinja2: lstrip_blocks: True
+{# frr config template #}
+frr version 7.0-MyOwnFRRVersion
+frr defaults traditional
+hostname {{ inventory_hostname }}
+log syslog informational
+service integrated-vtysh-config
+!
+router bgp {{routing_protocols.bgp.local_as}}
+{% for peer in routing_protocols.bgp.peers %}
+ neighbor {{ peer.ipv4_address }} remote-as {{ peer.remote_as }}
+{% endfor %}
+{% if routing_protocols.bgp.address_family_ipv4_unicast is defined %}
+!
+ address-family ipv4 unicast
+  {% for redistribute in routing_protocols.bgp.address_family_ipv4_unicast.redistribute %}
+  redistribute {{ redistribute }}
+  {% endfor %}
+ exit-address-family
+{% endif %}
+!
+line vty
+!

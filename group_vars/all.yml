@@ -1,0 +1,2 @@
+---
+build_directory: "/tmp/build/{{ inventory_hostname }}"

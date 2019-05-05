@@ -1,0 +1,48 @@
+---
+- name: configure environment
+  hosts: routers
+  connection: local
+  gather_facts: no
+  tasks:
+
+    - name: creating configuration build directory
+      file:
+        path: "{{ build_directory }}"
+        state: directory
+
+    - name: creating configuraion
+      template:
+        src: config.j2
+        dest: "{{ build_directory }}/frr.conf"
+
+    - name: copying configuration
+      copy:
+        src: "{{ build_directory }}/frr.conf"
+        dest: /etc/frr/frr.conf
+        owner: frr
+        group: frr
+      become: yes
+      become_user: frr
+
+    - name: restarting frr systemd service
+      systemd:
+        state: restarted
+        name: frr
+      become: yes
+
+- name: install app requirements
+  hosts: site1router, site2router
+  connection: local
+  gather_facts: no
+  tasks:
+
+    - name: install pip
+      apt:
+        name: python3-pip
+      become: yes
+
+    - name: pip install requirements
+      pip:
+        requirements: /vagrant/requirements.txt
+        executable: pip3
+      become: yes

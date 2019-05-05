@@ -6,7 +6,7 @@ import logging
 import sys
 from pyroute2 import IPDB
 
-logger = logging.getLogger('linux_vxlan_tunnel_example')
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console = logging.StreamHandler()

@@ -1,23 +1,58 @@
 # Linux VXLAN Tunnel Example Python Script
 
-This script is for creating a point to point unicast VXLAN tunnel between two linux hosts.  This script is to be ran on each of the hosts.
+This script is an example for how to create a point to point unicast VXLAN tunnel between two linux hosts via python.  Included is a vagrant file that will spin up a vagrant environment for testing the script functionality.
 
-## Prerequisites
+## Script Prerequisites
 
 ```
 >= python3.6
-pipenv
+pip3
+bridge-utils
 ```
 
-## Installing
+## Vagrant Environment
+
+Vagrant and virtualbox should be installed prior to bringing up the vagrant environment.
+
+The vagrant environment is simulating two sites connected by an isp.  The routers (circles in the  diagram) are Ubuntu 18.04 with [FRRouting](https://frrouting.org/) installed.  The servers (squares in the diagram) are vanilla Ubuntu 18.04.
+
+Following the below instructions the script will form a VXLAN tunnel overlay between the two site routers allowing the two servers to talk to each other as if they were directly connected.  Without the tunnel they are unable to communicate with each other.
+
+### Vagrant Up
 
 ```
 git clone https://github.com/briantsaunders/linux-vxlan-tunnel-example-script.git
 cd linux-vxlan-tunnel-example-script
-pipenv install
+vagrant up
 ```
 
-## Operation
+Ansible is used to provision the vagrant boxes.  It will configure FRRouting on the routers, install pip3 on the site routers, and will pip3 install the requirements.txt the site routers.  Check out the playbook pb.conf.all.yml for more details.
+
+### Testing in Vagrant
+
+Once the vagrant environment is up issue the following commands.
+
+Configure sie1router:
+```
+vagrant ssh site1router
+cd /vagrant
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.5 --vni 100 --physical_interface enp0s9
+```
+
+Configure site2router:
+```
+vagrant ssh site2router
+cd /vagrant
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.5 --remote_vtep 192.168.0.2 --vni 100 --physical_interface enp0s9
+```
+
+Validate site1server and ping site2server:
+```
+vagrant ssh site1server
+ping 172.16.0.11
+```
+
+## Script Operation
 
 ### Args
 
@@ -34,11 +69,11 @@ pipenv install
 #### Create
 
 ```
-sudo pipenv run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
+sudo python3 run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
 ```
 
 #### Delete
 
 ```
-sudo pipenv run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
+sudo python3 run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
 ```

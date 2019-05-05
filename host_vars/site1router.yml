@@ -1,0 +1,10 @@
+---
+routing_protocols:
+  bgp:
+    local_as: 65001
+    peers:
+      - ipv4_address: 192.168.0.3
+        remote_as: 65002
+    address_family_ipv4_unicast:
+      redistribute:
+        - connected
