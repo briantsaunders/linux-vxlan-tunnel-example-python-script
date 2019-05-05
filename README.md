@@ -12,6 +12,8 @@ bridge-utils
 
 ## Vagrant Environment
 
+![environment](https://github.com/briantsaunders/linux-vxlan-tunnel-example-script/blob/master/docs/environment.PNG?raw=true)
+
 Vagrant and virtualbox should be installed prior to bringing up the vagrant environment.
 
 The vagrant environment is simulating two sites connected by an isp.  The routers (circles in the  diagram) are Ubuntu 18.04 with [FRRouting](https://frrouting.org/) installed.  The servers (squares in the diagram) are vanilla Ubuntu 18.04.
