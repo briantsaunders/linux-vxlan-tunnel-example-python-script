@@ -35,6 +35,7 @@ def add_tunnel(args):
             vxlan_group=args.remote_vtep,
         ) as i:
             i.up()
+            logger.info(f"vxlan interface vxlan{args.vni} created")
         with ipdb.create(kind="bridge", ifname=f"br{args.vni}") as i:
             i.add_port(ipdb.interfaces[f"vxlan{args.vni}"].index)
             i.add_port(ipdb.interfaces[args.physical_interface].index)
