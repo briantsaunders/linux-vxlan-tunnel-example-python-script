@@ -71,11 +71,11 @@ ping 172.16.0.11
 #### Create
 
 ```
-sudo python3 run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
 ```
 
 #### Delete
 
 ```
-sudo python3 run python vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
 ```
