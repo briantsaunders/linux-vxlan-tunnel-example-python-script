@@ -30,7 +30,7 @@ def add_tunnel(args):
         kind="vxlan",
         ifname=f"vxlan{args.vni}",
         vxlan_id=args.vni,
-        vxlan_learning=1,
+        vxlan_learning=False,
         vxlan_local=args.local_vtep,
         vxlan_group=args.remote_vtep
     )
