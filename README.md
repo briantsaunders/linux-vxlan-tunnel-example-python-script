@@ -12,7 +12,7 @@ bridge-utils
 
 ## Vagrant Environment
 
-![environment](https://github.com/briantsaunders/linux-vxlan-tunnel-example-script/blob/master/docs/vxlan_vagrant_environment.PNG?raw=true)
+![environment](https://github.com/briantsaunders/linux-vxlan-tunnel-example-script/blob/master/docs/vxlan_vagrant_environment.png?raw=true)
 
 Vagrant and virtualbox should be installed prior to bringing up the vagrant environment.
 
