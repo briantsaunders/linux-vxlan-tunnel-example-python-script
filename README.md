@@ -12,7 +12,7 @@ bridge-utils
 
 ## Vagrant Environment
 
-![environment](https://github.com/briantsaunders/linux-vxlan-tunnel-example-script/blob/master/docs/environment.PNG?raw=true)
+![environment](https://github.com/briantsaunders/linux-vxlan-tunnel-example-script/blob/master/docs/vxlan_vagrant_environment.PNG?raw=true)
 
 Vagrant and virtualbox should be installed prior to bringing up the vagrant environment.
 
@@ -38,14 +38,14 @@ Configure sie1router:
 ```
 vagrant ssh site1router
 cd /vagrant
-sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.5 --vni 100 --physical_interface enp0s9
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.5 --vni 100 --physical_interface eth2
 ```
 
 Configure site2router:
 ```
 vagrant ssh site2router
 cd /vagrant
-sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.5 --remote_vtep 192.168.0.2 --vni 100 --physical_interface enp0s9
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.5 --remote_vtep 192.168.0.2 --vni 100 --physical_interface eth2
 ```
 
 Validate site1server can ping site2server:
@@ -63,7 +63,7 @@ ping 172.16.0.11
 | local_vtep    | True     | string  | none    | 10.0.0.1 | Local VXLAN tunnel endpoint  |
 | remote_vtep   | True     | string  | none    | 10.0.0.2 | Remove VXLAN tunnel endpoint |
 | vni           | True     | integer | none    | 100      | VXLAN network identifier     |
-| physical_interface | True | string | none    | ens192   | Local interface to bridge to VXLAN Tunnel |
+| physical_interface | True | string | none    | eth2   | Local interface to bridge to VXLAN Tunnel |
 | delete | False | boolean | False | none | Deletes VXLAN tunnel |
 
 ### Run
@@ -71,11 +71,11 @@ ping 172.16.0.11
 #### Create
 
 ```
-sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface eth2
 ```
 
 #### Delete
 
 ```
-sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface enp0s9 --delete
+sudo python3 linux_vxlan_tunnel_example.py --local_vtep 192.168.0.2 --remote_vtep 192.168.0.1 --vni 100 --physical_interface eth2 --delete
 ```
